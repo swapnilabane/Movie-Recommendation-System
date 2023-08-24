@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Review Movie: {{ movie.title }}</h1>
+  
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Submit Review</button>
+  </form>
+  
+  <a href="{% url 'movie_detail' movie.id %}">Back to Movie Details</a>
+{% endblock %}

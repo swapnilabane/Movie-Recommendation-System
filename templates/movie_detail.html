@@ -1,0 +1,26 @@
+<!-- movie_detail.html -->
+{% extends 'base.html' %}
+{% block content %}
+  <h1>{{ movie.title }}</h1>
+  <p>{{ movie.description }}</p>
+  
+  <p>Average Rating: {{ movie.average_rating }}</p>
+  <p>Total Ratings: {{ movie.total_ratings }}</p>
+  
+  <h2>Reviews</h2>
+  {% for review in reviews %}
+    <p>Rating: {{ review.rating }}</p>
+    <p>Comment: {{ review.comment }}</p>
+    <p>Posted by: {{ review.user }}</p>
+    <p>Posted at: {{ review.timestamp }}</p>
+  {% empty %}
+    <p>No reviews yet.</p>
+  {% endfor %}
+  
+  <h2>Add a Review</h2>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Submit Review</button>
+  </form>
+{% endblock %}
